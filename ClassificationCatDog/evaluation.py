@@ -27,6 +27,9 @@ imLoad.append([cv2.imread("cat.1.jpg"), "cat.1.jpg"])
 imLoad.append([cv2.imread("cat2.jpg"), "cat2.jpg"])
 imLoad.append([cv2.imread("cat.2294.jpg"), "cat.2294.jpg"])
 
+
+numCat=0
+numDog=0
 for img, name in imLoad:
     img = cv2.resize(img,( 150, 150))
     print("===", name, "===")
@@ -41,4 +44,13 @@ for img, name in imLoad:
     print(y_proba)
     y_classes = loaded_model.predict_classes(gray_image)
     print(y_classes)
+    if y_classes==0:
+        numCat+=1
+    else:
+        numDog+=1
     # y_classes = keras.np_utils.probas_to_classes(y_proba)
+
+print("cat expected:",6)
+print("cat found:",numCat)
+print("dog expected:",1)
+print("dog found:",numDog)
