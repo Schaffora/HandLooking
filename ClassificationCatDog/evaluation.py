@@ -25,8 +25,10 @@ imLoad.append([cv2.imread("cat.876.jpg"), "cat.876.jpg"])
 imLoad.append([cv2.imread("cat.58.jpg"), "cat.58.jpg"])
 imLoad.append([cv2.imread("cat.1.jpg"), "cat.1.jpg"])
 imLoad.append([cv2.imread("cat2.jpg"), "cat2.jpg"])
+imLoad.append([cv2.imread("cat.2294.jpg"), "cat.2294.jpg"])
 
-for img,name in imLoad:
+for img, name in imLoad:
+    img = cv2.resize(img,( 150, 150))
     print("===", name, "===")
     # gray_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     # gray_image = gray_image.reshape((1,) + gray_image.shape + (1,))
