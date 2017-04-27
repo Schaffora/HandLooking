@@ -2,6 +2,7 @@ from keras.models import model_from_json
 import keras
 import numpy as np
 import cv2
+import os
 
 # load json and create model
 json_file = open('model.json', 'r')
@@ -19,19 +20,33 @@ verbose = 0
 
 imLoad = []
 
-imLoad.append([cv2.imread("chat.jpg"), "chat.jpg"])
-imLoad.append([cv2.imread("dog.807.jpg"), "dog.807.jpg"])
-imLoad.append([cv2.imread("cat.876.jpg"), "cat.876.jpg"])
-imLoad.append([cv2.imread("cat.58.jpg"), "cat.58.jpg"])
-imLoad.append([cv2.imread("cat.1.jpg"), "cat.1.jpg"])
-imLoad.append([cv2.imread("cat2.jpg"), "cat2.jpg"])
-imLoad.append([cv2.imread("cat.2294.jpg"), "cat.2294.jpg"])
+expCat = 0
+expDog = 0
+# read files in folders cat dog
+for f in os.listdir(os.getcwd() + "/eval/cat/"):
+    # imLoad.append([cv2.imread(f), f])
+    imLoad.append(f)
+    expCat += 1
 
+for f in os.listdir(os.getcwd() + "/eval/dog/"):
+    # imLoad.append([cv2.imread(f), f])
+    imLoad.append(f)
+    expDog += 1
 
-numCat=0
-numDog=0
-for img, name in imLoad:
-    img = cv2.resize(img,( 150, 150))
+# imLoad.append([cv2.imread("chat.jpg"), "chat.jpg"])
+# imLoad.append([cv2.imread("dog.807.jpg"), "dog.807.jpg"])
+# imLoad.append([cv2.imread("cat.876.jpg"), "cat.876.jpg"])
+# imLoad.append([cv2.imread("cat.58.jpg"), "cat.58.jpg"])
+# imLoad.append([cv2.imread("cat.1.jpg"), "cat.1.jpg"])
+# imLoad.append([cv2.imread("cat2.jpg"), "cat2.jpg"])
+# imLoad.append([cv2.imread("cat.2294.jpg"), "cat.2294.jpg"])
+
+numCat = 0
+numDog = 0
+
+# for img, name in imLoad:
+for name in imLoad:
+    img = cv2.resize(cv2.imread(name), (150, 150))
     print("===", name, "===")
     # gray_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     # gray_image = gray_image.reshape((1,) + gray_image.shape + (1,))
@@ -44,13 +59,13 @@ for img, name in imLoad:
     print(y_proba)
     y_classes = loaded_model.predict_classes(gray_image)
     print(y_classes)
-    if y_classes==0:
-        numCat+=1
+    if y_classes == 0:
+        numCat += 1
     else:
-        numDog+=1
-    # y_classes = keras.np_utils.probas_to_classes(y_proba)
+        numDog += 1
+        # y_classes = keras.np_utils.probas_to_classes(y_proba)
 
-print("cat expected:",6)
-print("cat found:",numCat)
-print("dog expected:",1)
-print("dog found:",numDog)
+print("cat expected:", expCat)
+print("cat found:", numCat)
+print("dog expected:", expDog)
+print("dog found:", numDog)
