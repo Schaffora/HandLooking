@@ -46,7 +46,13 @@ numDog = 0
 
 # for img, name in imLoad:
 for name in imLoad:
-    img = cv2.resize(cv2.imread(name), (150, 150))
+    loadedImage = cv2.imread(name)
+
+    if (loadedImage is not None):
+        img = cv2.resize(loadedImage, (150, 150))
+    else:
+        print("??????????????ERROR???????????????")
+
     print("===", name, "===")
     # gray_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     # gray_image = gray_image.reshape((1,) + gray_image.shape + (1,))
