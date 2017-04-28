@@ -22,15 +22,19 @@ imLoad = []
 
 expCat = 0
 expDog = 0
+directories = ["/eval/cat/", "/eval/dog/"]
 # read files in folders cat dog
-for f in os.listdir(os.getcwd() + "/eval/cat/"):
+
+for f in os.listdir(os.getcwd() + directories[0]):
     # imLoad.append([cv2.imread(f), f])
-    imLoad.append(f)
+    fullName = os.getcwd() + directories[0] + f
+    imLoad.append(fullName)
     expCat += 1
 
-for f in os.listdir(os.getcwd() + "/eval/dog/"):
+for f in os.listdir(os.getcwd() + directories[1]):
+    fullName = os.getcwd() + directories[1] + f
     # imLoad.append([cv2.imread(f), f])
-    imLoad.append(f)
+    imLoad.append(fullName)
     expDog += 1
 
 # imLoad.append([cv2.imread("chat.jpg"), "chat.jpg"])
@@ -47,6 +51,9 @@ numDog = 0
 # for img, name in imLoad:
 for name in imLoad:
     loadedImage = cv2.imread(name)
+    # cv2.imshow(name, loadedImage)
+    # cv2.waitKey(0)
+    # cv2.destroyAllWindows()
 
     if (loadedImage is not None):
         img = cv2.resize(loadedImage, (150, 150))
@@ -60,14 +67,14 @@ for name in imLoad:
     # print('prediction of [1, 1]: ', loaded_model.predict_classes(img, verbose=verbose))
 
 
-    # seem to be: 0 cats, 1 dogs
+    # seem to be: 1 cats, 0 dogs
     y_proba = loaded_model.predict(gray_image)
     print(y_proba)
     y_classes = loaded_model.predict_classes(gray_image)
     print(y_classes)
-    if y_classes == 0:
+    if y_classes == 1:
         numCat += 1
-    else:
+    elif (y_classes == 0):
         numDog += 1
         # y_classes = keras.np_utils.probas_to_classes(y_proba)
 
