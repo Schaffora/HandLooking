@@ -47,6 +47,7 @@ for f in os.listdir(os.getcwd() + directories[1]):
 
 numCat = 0
 numDog = 0
+duno = 0
 
 # for img, name in imLoad:
 for name in imLoad:
@@ -70,15 +71,20 @@ for name in imLoad:
     # seem to be: 1 cats, 0 dogs
     y_proba = loaded_model.predict(gray_image)
     print(y_proba)
+    print(y_proba[0][0])
     y_classes = loaded_model.predict_classes(gray_image)
     print(y_classes)
-    if y_classes == 1:
-        numCat += 1
-    elif (y_classes == 0):
-        numDog += 1
+    if (y_proba[0][0] != 0) and (y_proba[0][0] != 1):
+        duno += 1
+    else:
+        if y_classes == 1:
+            numCat += 1
+        elif (y_classes == 0):
+            numDog += 1
         # y_classes = keras.np_utils.probas_to_classes(y_proba)
 
 print("cat expected:", expCat)
 print("cat found:", numCat)
 print("dog expected:", expDog)
 print("dog found:", numDog)
+print("not known:", duno)
