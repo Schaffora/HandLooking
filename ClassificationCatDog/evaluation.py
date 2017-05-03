@@ -46,8 +46,9 @@ for f in os.listdir(os.getcwd() + directories[1]):
 # imLoad.append([cv2.imread("cat.2294.jpg"), "cat.2294.jpg"])
 
 numCat = 0
+maybeCat = 0
 numDog = 0
-duno = 0
+maybeDog = 0
 
 # for img, name in imLoad:
 for name in imLoad:
@@ -74,17 +75,22 @@ for name in imLoad:
     print(y_proba[0][0])
     y_classes = loaded_model.predict_classes(gray_image)
     print(y_classes)
-    if (y_proba[0][0] != 0) and (y_proba[0][0] != 1):
-        duno += 1
-    else:
-        if y_classes == 1:
+
+    if y_classes == 1:
+        if y_proba[0][0] < 1:
+            maybeCat += 1
+        else:
             numCat += 1
-        elif (y_classes == 0):
+    elif (y_classes == 0):
+        if y_proba[0][0] < 1:
+            maybeDog += 1
+        else:
             numDog += 1
-        # y_classes = keras.np_utils.probas_to_classes(y_proba)
+            # y_classes = keras.np_utils.probas_to_classes(y_proba)
 
 print("cat expected:", expCat)
 print("cat found:", numCat)
 print("dog expected:", expDog)
 print("dog found:", numDog)
-print("not known:", duno)
+print("maybe dog:", maybeDog)
+print("maybe cat:", maybeCat)
