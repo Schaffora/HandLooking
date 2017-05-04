@@ -17,8 +17,9 @@ img_width, img_height = 28, 28
 loaded_model.compile(loss='binary_crossentropy', optimizer='rmsprop', metrics=['accuracy'])
 verbose = 0
 
-img =cv2.imread("3.png")
+img =cv2.imread("6_1.png")
 gray_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+gray_image = cv2.resize(gray_image,(img_width,img_height))
 gray_image = gray_image.reshape((1,)+ gray_image.shape+(1,))
 #print('prediction of [1, 1]: ', loaded_model.predict_classes(img, verbose=verbose))
 y_proba = loaded_model.predict(gray_image)
