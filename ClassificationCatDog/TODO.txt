@@ -1,0 +1,24 @@
+# This file may be used to create an environment using:
+# $ conda create --name <env> --file <this file>
+# platform: win-64
+h5py=2.7.0=np112py35_0
+hdf5=1.8.17=vc14_10
+keras=2.0.2=py35_1
+libgpuarray=0.6.5=np112py35_vc14_0
+mako=1.0.6=py35_0
+markupsafe=0.23=py35_1
+mkl=2017.0.1=0
+numpy=1.12.1=py35_0
+opencv3=3.1.0=py35_0
+pip=9.0.1=py35_1
+python=3.5.3=0
+pyyaml=3.12=py35_1
+scipy=0.19.0=np112py35_0
+setuptools=27.2.0=py35_1
+six=1.10.0=py35_1
+theano=0.9.0=py35_0
+vc=14=0
+vs2015_runtime=14.0.25123=0
+wheel=0.29.0=py35_0
+yaml=0.1.6=vc14_0
+zlib=1.2.11=vc14_0
