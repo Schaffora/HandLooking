@@ -42,7 +42,7 @@ def multipleEval():
         else:
             print("??????????????ERROR???????????????")
 
-        print("===", name, "===")
+        print("\n===", name, "===")
         # gray_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         # gray_image = gray_image.reshape((1,) + gray_image.shape + (1,))
         gray_image = img.reshape((1,) + img.shape)
@@ -51,10 +51,9 @@ def multipleEval():
 
         # seem to be: 1 cats, 0 dogs
         y_proba = loaded_model.predict(gray_image)
-        print(y_proba)
-        print(y_proba[0][0])
+        print("proba:",y_proba)
         y_classes = loaded_model.predict_classes(gray_image)
-        print(y_classes)
+        print("classe:",y_classes)
 
         if y_classes == 0:
             # if y_proba[0][0] < 0.5:
@@ -108,7 +107,7 @@ def one(file):
 
 if __name__ == "__main__":
     Choices = ["modelWith10k/", ""]
-    modelChoice = Choices[1] #0-1 to change model
+    modelChoice = Choices[0] #0-1 to change model
 
     # load json and create model
     # json_file = open('model.json', 'r')
@@ -126,7 +125,8 @@ if __name__ == "__main__":
     loaded_model.compile(loss='binary_crossentropy', optimizer='rmsprop', metrics=['accuracy'])
     verbose = 0
 
-    # multipleEval()
+    #eval the files in /eval/ directories
+    multipleEval()
 
     list = ["cat.12497.jpg", "cat.12498.jpg", "cat.12499.jpg",
             "dog.12497.jpg", "dog.12498.jpg", "dog.12499.jpg"]
@@ -136,4 +136,6 @@ if __name__ == "__main__":
     # one(os.getcwd()+"\\"+list[2]) # ne sait pas ce que c'est
     # one(os.getcwd()+"\\"+list[3]) # marche pas avec le model1
     # one(os.getcwd()+"\\"+list[4]) # faux
-    one(os.getcwd()+"\\"+list[5])
+    # one(os.getcwd()+"\\"+list[5])
+    # one(os.getcwd()+"\\"+"chat.jpg")
+
