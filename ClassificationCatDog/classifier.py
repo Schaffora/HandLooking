@@ -47,8 +47,8 @@ img_width, img_height = 150, 150
 
 train_data_dir = 'data/train'
 validation_data_dir = 'data/validation'
-nb_train_samples = 800
-nb_validation_samples = 200
+nb_train_samples = 3000
+nb_validation_samples = 600
 epochs = 50
 # epochs = 10
 batch_size = 16
@@ -111,10 +111,11 @@ model.fit_generator(
     epochs=epochs,
     validation_data=validation_generator,
     validation_steps=nb_validation_samples // batch_size)
-
+class_dictionary = train_generator.class_indices
+print(class_dictionary)
 # serialize model to JSON
 model_json = model.to_json()
-with open("model.json", "w") as json_file:
+with open("model2.json", "w") as json_file:
     json_file.write(model_json)
 # serialize weights to HDF5
-model.save_weights("model.h5")
+model.save_weights("model2.h5")
