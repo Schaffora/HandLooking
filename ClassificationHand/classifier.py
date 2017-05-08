@@ -77,8 +77,8 @@ class_dictionary = train_generator.class_indices
 print(class_dictionary)
 # serialize model to JSON
 model_json = model.to_json()
-with open("model2.json", "w") as json_file:
+with open("model.json", "w") as json_file:
     json_file.write(model_json)
 
 # serialize weights to HDF5
-model.save_weights("model2.h5")
+model.save_weights("model.h5")
