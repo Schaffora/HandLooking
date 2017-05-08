@@ -10,13 +10,8 @@ img_width, img_height = 150, 150
 
 train_data_dir = 'data/train'
 validation_data_dir = 'data/validation'
-<<<<<<< HEAD:ClassificationHand/classifier.py
 nb_train_samples = 40
 nb_validation_samples = 10
-=======
-nb_train_samples = 3000
-nb_validation_samples = 600
->>>>>>> 5dbb929df531d22395ac8753a1904875ea566e4f:ClassificationCatDog/classifier.py
 epochs = 50
 batch_size = 2
 
