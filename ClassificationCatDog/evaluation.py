@@ -85,15 +85,15 @@ def one(file):
     # print('prediction of [1, 1]: ', loaded_model.predict_classes(img, verbose=verbose))
 
 
-    # seem to be: 1 cats, 0 dogs
+    # seem to be: 0 cats, 1 dogs
     y_proba = loaded_model.predict(gray_image)
     print(y_proba)
     y_classes = loaded_model.predict_classes(gray_image, verbose=0)
     print(y_classes)
 
-    if y_classes == 1:
+    if y_classes == 0:
         print("It's a cat!")
-    elif y_classes == 0:
+    elif y_classes == 1:
         print("It's a dog!")
 
 
